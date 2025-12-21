@@ -90,9 +90,21 @@ class GetPlayersDataFromTeam(Tool):
         players = []
         for p in players_raw.values():
             players.append({
+                "id": p.get("id"),
+                "team_id": p.get("teamid"),
+                "first_name": p.get("fname"),
+                "last_name": p.get("lname"),
                 "name": p.get("name"),
                 "age": int(p.get("age")),
                 "nationality": p.get("nationality"),
+                "salary": int(p.get("salary", 0)),
+                "form": int(p.get("form", 0)),
+                "aggression": int(p.get("aggression", 0)),
+                "discipline": int(p.get("discipline", 0)),
+                "leadership": int(p.get("leadership", 0)),
+                "experience": int(p.get("experience", 0)),
+                "weight": int(p.get("weight", 0)),
+                "height": int(p.get("height", 0)),
                 "csr": int(p.get("csr", 0)),
                 "energy": int(p.get("energy", 0)),
                 "skills": {
@@ -100,7 +112,12 @@ class GetPlayersDataFromTeam(Tool):
                     "handling": p.get("handling"),
                     "attack": p.get("attack"),
                     "defense": p.get("defense"),
+                    "technique": p.get("technique"),
+                    "strength": p.get("strength"),
+                    "jumping": p.get("jumping"),
                     "speed": p.get("speed"),
+                    "agility": p.get("agility"),
+                    "kicking": p.get("kicking"),
                 },
                 "contract_until": p.get("contract", "").split("T")[0]
             })
@@ -182,18 +199,23 @@ class GetPlayersInfoFromTeam(Tool):
 
         for p in players.values():
             lines.append(
-                f"{p.get('name', 'Unknown')} ({p.get('nationality', '?')}) – Age {p.get('age', '?')}\n"
+                f"{p.get('fname', '?')} {p.get('lname', '?')}\n"
+                f" Age {p.get('age', '?')} Form {p.get('form', '?')} Agg {p.get('aggression', '?')} Disc {p.get('discipline', '?')}"
+                f" Lead {p.get('leadership', '?')} Exp {p.get('experience', '?')}\n"
                 f"  CSR: {int(p.get('csr', 0)):,} | Energy: {p.get('energy', '?')}\n"
                 f"  Skills: Sta {p.get('stamina', '?')}, "
                 f"Han {p.get('handling', '?')}, "
                 f"Att {p.get('attack', '?')}, "
                 f"Def {p.get('defense', '?')}, "
-                f"Spd {p.get('speed', '?')}\n"
-                f"  Contract until: {p.get('contract', '').split('T')[0]}\n"
+                f"Tec {p.get('technique', '?')}, "
+                f"Str {p.get('strength', '?')}, "
+                f"Jmp {p.get('jumping', '?')}, "
+                f"Spd {p.get('speed', '?')}, "
+                f"Agi {p.get('agility', '?')}, "
+                f"Kic {p.get('kicking', '?')}\n"
             )
 
         return "\n".join(lines)
-
 
 #--------------------------------------------------------------------
 

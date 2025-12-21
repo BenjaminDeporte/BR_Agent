@@ -10,6 +10,10 @@ import gradio as gr
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
+    
+#----------------------------------------------------------------------------------
+#       LOAD ENVIRONMENT VARIABLES CONTAINING API KEYS
+#----------------------------------------------------------------------------------
 
 # --- Step 1: Load environment variables from the .env file ---
 # load_dotenv() searches for the .env file in the current directory and loads
@@ -35,7 +39,7 @@ load_dotenv()
 
 # OPEN AI -------------------------------------------------------------------------
 try:
-    openai_model = LiteLLMModel(model_id="openai/gpt-4o-mini")
+    openai_model = LiteLLMModel(model_id="openai/gpt-3.5-turbo")
     print(f"Open AI modèle chargé")
 except Exception as e:
     print(f"Pb chargement modèle Open AI")
@@ -78,14 +82,31 @@ def get_current_time_in_timezone(timezone: str) -> str:
 #------------------------------------------------------------------------------------
 
 from tools.br_players_in_team import GetPlayersInfoFromTeam, GetPlayersDataFromTeam
-
-get_players_info_from_team_tool = GetPlayersInfoFromTeam()
-get_players_data_from_team_tool = GetPlayersDataFromTeam()
+from tools.br_team_memory import (
+    LoadTeamSnapshot,
+    CompareTeamSnapshots,
+    SaveTeamSnapshot,
+    ReportTeamChanges
+)
 
 brtools = [
-    get_players_info_from_team_tool,
-    get_players_data_from_team_tool,
+    GetPlayersInfoFromTeam(),
+    GetPlayersDataFromTeam(),
 ]
+br_memory_tools = [
+    LoadTeamSnapshot(),
+    ReportTeamChanges(),
+    CompareTeamSnapshots(),
+    SaveTeamSnapshot()
+]
+
+#-------------------------------------------------------------------------------------
+#        SHORT-TERM/CONVERSATION MEMORY (HOME MADE)
+#-------------------------------------------------------------------------------------
+
+from chat_memory import ChatSessionHistory
+
+chat_history = ChatSessionHistory()
 
 #------------------------------------------------------------------------------------
 #        AGENTS
@@ -95,13 +116,13 @@ brtools = [
 with open("/home/benjamin/Folders_Python/BR_Agent/agents/prompts/instructions.txt", "r", encoding="utf-8") as f:
     instructions = f.read()
     
-    
 # implement the agent
 
 agent = CodeAgent(
     tools=[
         get_current_time_in_timezone,
-        *brtools
+        *brtools,
+        *br_memory_tools
     ], 
     model=mistral_model,
     max_steps=5,
@@ -114,7 +135,7 @@ agent = CodeAgent(
 )
 
 #-------------------------------------------------------------------------------------
-#    "APP"
+#    GIVE SOME INFO ON WHAT'S RUNNING IN THE APP
 #-------------------------------------------------------------------------------------
 
 print(f"Agent is powered by: {agent.model.model_id}")
@@ -122,24 +143,61 @@ print("-" * 25)
 
 print(f"Gradio version is {gr.__version__}")
 
+#-------------------------------------------------------------------------------------
+#    GRADIO INTERFACE
+#-------------------------------------------------------------------------------------
+
+# this is the home-made conversion normalizer from agents outputs 
+# to strings suitable for UI display in Gradio
+from agents.output_adapter import normalize_agent_output
+
+# the chat engine per say
 def chat_with_agent(message, history):
+    
+    # ------- manage in-chat memory -------------------------------------------
+    
+    # 1. build lightweight context for agent from in-chat memory (e.g., last 5 exchanges)
+    context = ""
+    for msg in chat_history.get_history()[-6:]:  # last 6 messages (3 exchanges)
+        # emphasize role in capital letters
+        context += f"[{msg['role'].upper()}]\n{msg['content']}\n\n"
+
+    # 2. add user message to history
+    chat_history.add_user_message(message)
+        
+    # 3. build combined prompt to send to agent
+    combined_prompt = f"""
+    Conversation context:
+    {context}
+    Current user message:
+    {message}
+    """
+          
+    # 4. get agent response
+    try:
+        raw_response = agent.run(combined_prompt)
+        response = normalize_agent_output(raw_response)
+    except Exception as e:
+        response = f"An error occurred while processing your request: {str(e)}"
+    
+    # add agent message to in-chat memory
+    chat_history.add_agent_message(response)
+    
+    #----------------------------------------------------------------------------
+    # build Gradio-compatible history
     history = history or []
-
-    # run agent
-    response = str(agent.run(message))
-
-    # append user
-    history.append({"role": "user", "content": message})
-    # append assistant
-    history.append({"role": "assistant", "content": response})
+    history.append({"role": "user", "content": message}) # append user message
+    history.append({"role": "assistant", "content": response})     # append assistant response
 
     # return history for Chatbot, and empty string for Textbox to clear it
     return history, ""
 
+#------------ build Gradio app interface ------------------------
 with gr.Blocks() as demo:
     gr.Markdown("## 🧠 smolagents BlackoutRugby Assistant")
 
     chatbot = gr.Chatbot()
+    
     msg = gr.Textbox(
         placeholder="Ask something…",
         show_label=False
@@ -150,5 +208,22 @@ with gr.Blocks() as demo:
         inputs=[msg, chatbot],
         outputs=[chatbot, msg]  # second output is the textbox to clear
     )
+    
+    # --- cosmetic ---
+    # Inject auto-scroll JS
+    gr.HTML("""
+    <script>
+    const chatObserver = new MutationObserver(() => {
+      const chat = document.querySelector("#chatbot");
+      if (chat) {
+        chat.scrollTop = chat.scrollHeight;
+      }
+    });
+    chatObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+    </script>
+    """)
 
 demo.launch()
