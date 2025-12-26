@@ -45,3 +45,14 @@ Before calling any tool:
 1. Check whether the needed information already exists in context.
 2. If yes, reuse it.
 3. If no, then call the appropriate tool.
+
+When user requests the history of a player:
+1. If the player's team name or team number id is not provided, assume the player's team is Hastings Stormers (ID 57796)
+2. Look for the id number of the player. To do this, search for the provided name in the field 'name' of the output of the get_players_data_from_team and get_players_data_from_youth_team
+3. If not successful, search for the provided name in the field 'lname' of the output of the get_players_data_from_team and get_players_data_from_youth_team
+4. If not successful, search for the provided name in the field 'fname' of the output of the get_players_data_from_team and get_players_data_from_youth_team
+5. Use the retrieved id number of the player to get his history with the history tools.
+6. Process the result in a readable format.
+
+In a player history, a "pop" is an event in which a skill value has increased. A "pop" event is described in the history as :
+<skill type=skill_name /> popped from <rank value=x /> to <rank value=y />. This means the skill "skill_name" has increased from value x to value y.

@@ -16,7 +16,7 @@
     "weight": 97,
     "height": 186,
     "csr": 370751,
-    "energy": 73,
+    "energy": 77,
     "skills": {
       "stamina": 19,
       "handling": 18,
@@ -48,7 +48,7 @@
     "weight": 109,
     "height": 196,
     "csr": 389527,
-    "energy": 85,
+    "energy": 87,
     "skills": {
       "stamina": 19,
       "handling": 18,
@@ -79,8 +79,8 @@
     "experience": 8,
     "weight": 111,
     "height": 191,
-    "csr": 344193,
-    "energy": 84,
+    "csr": 343671,
+    "energy": 87,
     "skills": {
       "stamina": 19,
       "handling": 18,
@@ -112,7 +112,7 @@
     "weight": 103,
     "height": 193,
     "csr": 365562,
-    "energy": 75,
+    "energy": 78,
     "skills": {
       "stamina": 18,
       "handling": 18,
@@ -144,7 +144,7 @@
     "weight": 119,
     "height": 204,
     "csr": 339701,
-    "energy": 82,
+    "energy": 85,
     "skills": {
       "stamina": 19,
       "handling": 17,
@@ -176,7 +176,7 @@
     "weight": 115,
     "height": 206,
     "csr": 346560,
-    "energy": 81,
+    "energy": 84,
     "skills": {
       "stamina": 19,
       "handling": 18,
@@ -208,7 +208,7 @@
     "weight": 126,
     "height": 183,
     "csr": 300915,
-    "energy": 83,
+    "energy": 85,
     "skills": {
       "stamina": 19,
       "handling": 17,
@@ -240,7 +240,7 @@
     "weight": 86,
     "height": 178,
     "csr": 326901,
-    "energy": 81,
+    "energy": 84,
     "skills": {
       "stamina": 18,
       "handling": 16,
@@ -272,7 +272,7 @@
     "weight": 86,
     "height": 191,
     "csr": 375988,
-    "energy": 80,
+    "energy": 83,
     "skills": {
       "stamina": 18,
       "handling": 18,
@@ -303,8 +303,8 @@
     "experience": 5,
     "weight": 123,
     "height": 200,
-    "csr": 269413,
-    "energy": 91,
+    "csr": 269850,
+    "energy": 94,
     "skills": {
       "stamina": 18,
       "handling": 15,
@@ -336,7 +336,7 @@
     "weight": 135,
     "height": 183,
     "csr": 228230,
-    "energy": 74,
+    "energy": 78,
     "skills": {
       "stamina": 18,
       "handling": 11,
@@ -368,7 +368,7 @@
     "weight": 112,
     "height": 189,
     "csr": 314527,
-    "energy": 83,
+    "energy": 86,
     "skills": {
       "stamina": 18,
       "handling": 16,
@@ -400,7 +400,7 @@
     "weight": 132,
     "height": 185,
     "csr": 254414,
-    "energy": 79,
+    "energy": 82,
     "skills": {
       "stamina": 18,
       "handling": 14,
@@ -432,7 +432,7 @@
     "weight": 117,
     "height": 203,
     "csr": 317497,
-    "energy": 75,
+    "energy": 79,
     "skills": {
       "stamina": 18,
       "handling": 17,
@@ -464,7 +464,7 @@
     "weight": 83,
     "height": 170,
     "csr": 368820,
-    "energy": 75,
+    "energy": 78,
     "skills": {
       "stamina": 18,
       "handling": 18,
@@ -496,7 +496,7 @@
     "weight": 97,
     "height": 183,
     "csr": 266916,
-    "energy": 105,
+    "energy": 107,
     "skills": {
       "stamina": 18,
       "handling": 17,
@@ -528,7 +528,7 @@
     "weight": 117,
     "height": 201,
     "csr": 223133,
-    "energy": 61,
+    "energy": 66,
     "skills": {
       "stamina": 16,
       "handling": 15,
@@ -559,8 +559,8 @@
     "experience": 7,
     "weight": 81,
     "height": 180,
-    "csr": 322420,
-    "energy": 88,
+    "csr": 322910,
+    "energy": 91,
     "skills": {
       "stamina": 15,
       "handling": 18,
@@ -592,7 +592,7 @@
     "weight": 107,
     "height": 171,
     "csr": 227185,
-    "energy": 106,
+    "energy": 108,
     "skills": {
       "stamina": 17,
       "handling": 16,
@@ -623,8 +623,8 @@
     "experience": 3,
     "weight": 135,
     "height": 185,
-    "csr": 128256,
-    "energy": 95,
+    "csr": 128060,
+    "energy": 98,
     "skills": {
       "stamina": 16,
       "handling": 9,
@@ -655,7 +655,7 @@
     "experience": 3,
     "weight": 97,
     "height": 174,
-    "csr": 154704,
+    "csr": 154523,
     "energy": 110,
     "skills": {
       "stamina": 15,
@@ -688,7 +688,7 @@
     "weight": 119,
     "height": 195,
     "csr": 116610,
-    "energy": 109,
+    "energy": 110,
     "skills": {
       "stamina": 15,
       "handling": 14,
@@ -720,7 +720,7 @@
     "weight": 116,
     "height": 206,
     "csr": 85921,
-    "energy": 104,
+    "energy": 107,
     "skills": {
       "stamina": 10,
       "handling": 14,

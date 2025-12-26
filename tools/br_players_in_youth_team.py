@@ -22,10 +22,10 @@ def _load_br_keys() -> dict:
 #----------------------------------------------------------------
 
    
-class GetPlayersDataFromTeam(Tool):
-    name = "get_players_data_from_team"
+class GetPlayersDataFromYouthTeam(Tool):
+    name = "get_players_data_from_youth_team"
     description = (
-        "Returns structured player data for a team as a list of dictionaries. "
+        "Returns structured player data for a youth U20 team as a list of dictionaries. "
         "Each dictionary contains at least: name (str), age (int), nationality (str), "
         "csr (int), energy (int), skills (dict), contract_until (str). "
         "This output is intended for computation and analysis."
@@ -62,7 +62,7 @@ class GetPlayersDataFromTeam(Tool):
         
     def forward(self, team_id: int) -> list[dict]:
         """
-        method to get the list of players in a team from the BR API.
+        method to get the list of players in a youth team from the BR API.
 
         - renvoie une string avec la liste des joueurs
         - écrit l'objet response dans la property correspondante self.response
@@ -75,7 +75,8 @@ class GetPlayersDataFromTeam(Tool):
             "m" : self.MY_MEMBER_ID,
             "teamid" : team_id,
             "mk" : self.ACCESS_KEY,
-            "json" : 1
+            "json" : 1,
+            "youth" : 1
         }
         
         r = requests.get(self.BR_API, params=payload)
@@ -90,14 +91,14 @@ class GetPlayersDataFromTeam(Tool):
         players = []
         for p in players_raw.values():
             players.append({
-                "id": int(p.get("id")),
-                "team_id": int(p.get("teamid")),
+                "id": p.get("id"),
+                "team_id": p.get("teamid"),
                 "first_name": p.get("fname"),
                 "last_name": p.get("lname"),
                 "name": p.get("name"),
                 "age": int(p.get("age")),
                 "nationality": p.get("nationality"),
-                "salary": int(p.get("salary", 0)),
+                # "salary": int(p.get("salary", 0)),
                 "form": int(p.get("form", 0)),
                 "aggression": int(p.get("aggression", 0)),
                 "discipline": int(p.get("discipline", 0)),
@@ -105,8 +106,9 @@ class GetPlayersDataFromTeam(Tool):
                 "experience": int(p.get("experience", 0)),
                 "weight": int(p.get("weight", 0)),
                 "height": int(p.get("height", 0)),
-                "csr": int(p.get("csr", 0)),
+                # "csr": int(p.get("csr", 0)),
                 "energy": int(p.get("energy", 0)),
+                'scouting_stars_used':int(p.get('scouting_stars_used')),
                 "skills": {
                     "stamina": p.get("stamina"),
                     "handling": p.get("handling"),
@@ -119,7 +121,7 @@ class GetPlayersDataFromTeam(Tool):
                     "agility": p.get("agility"),
                     "kicking": p.get("kicking"),
                 },
-                "contract_until": p.get("contract", "").split("T")[0]
+                # "contract_until": p.get("contract", "").split("T")[0]
             })
 
         return players
@@ -129,10 +131,10 @@ class GetPlayersDataFromTeam(Tool):
 # DISPLAY TOOL - Get a human-readable summary of players in a team from the BR API
 #----------------------------------------------------------------
 
-class GetPlayersInfoFromTeam(Tool):
-    name = "get_players_info_from_team"
+class GetPlayersInfoFromYouthTeam(Tool):
+    name = "get_players_info_from_youth_team"
     description = (
-        "Returns a formatted, human-readable text summary of all players in a team. "
+        "Returns a formatted, human-readable text summary of all players in a youth U20 team. "
         "This tool is intended for display and information only, not for "
         "programmatic analysis or computation."
         "This tool returns formatted text and is not suitable for programmatic analysis."
@@ -178,7 +180,8 @@ class GetPlayersInfoFromTeam(Tool):
             "m": self.MY_MEMBER_ID,
             "teamid": team_id,
             "mk": self.ACCESS_KEY,
-            "json": 1
+            "json": 1,
+            "youth": 1
         }
 
         r = requests.get(self.BR_API, params=payload)
@@ -202,7 +205,9 @@ class GetPlayersInfoFromTeam(Tool):
                 f"{p.get('fname', '?')} {p.get('lname', '?')}\n"
                 f" Age {p.get('age', '?')} Form {p.get('form', '?')} Agg {p.get('aggression', '?')} Disc {p.get('discipline', '?')}"
                 f" Lead {p.get('leadership', '?')} Exp {p.get('experience', '?')}\n"
-                f"  CSR: {int(p.get('csr', 0)):,} | Energy: {p.get('energy', '?')}\n"
+                f" Energy: {p.get('energy', '?')}\n"
+                f" Weight: {p.get('weight', '?')} Height: {p.get('height', '?')}\n"
+                f" Scouting Stars Used: {p.get('scouting_stars_used', '?')}\n"
                 f"  Skills: Sta {p.get('stamina', '?')}, "
                 f"Han {p.get('handling', '?')}, "
                 f"Att {p.get('attack', '?')}, "
@@ -220,9 +225,5 @@ class GetPlayersInfoFromTeam(Tool):
 #--------------------------------------------------------------------
 
 if __name__ == "__main__":
-    mytool = GetPlayersInfoFromTeam()
+    mytool = GetPlayersDataFromYouthTeam()
     print(mytool.forward(team_id=57796))  # Example team ID
-    mytool2 = GetPlayersDataFromTeam()
-    players_data = mytool2.forward(team_id=57796)
-    for player in players_data:
-        print(player)

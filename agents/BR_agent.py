@@ -88,16 +88,40 @@ from tools.br_team_memory import (
     SaveTeamSnapshot,
     ReportTeamChanges
 )
+from tools.br_players_in_youth_team import GetPlayersDataFromYouthTeam, GetPlayersInfoFromYouthTeam
+from tools.br_youth_team_memory import (
+    LoadYouthTeamSnapshot,
+    CompareYouthTeamSnapshots,
+    SaveYouthTeamSnapshot,
+    ReportYouthTeamChanges
+)
+from tools.br_players_history import GetPlayerHistoryData, GetPlayerHistoryInfo, GetTeamTrainingHistoryData
+from tools.br_utils import Converter_From_Season_Round_Day_to_Date_INFO, Converter_From_Season_Round_Day_to_Date_DATA
 
 brtools = [
     GetPlayersInfoFromTeam(),
     GetPlayersDataFromTeam(),
+    GetPlayersInfoFromYouthTeam(),
+    GetPlayersDataFromYouthTeam()
 ]
 br_memory_tools = [
     LoadTeamSnapshot(),
     ReportTeamChanges(),
     CompareTeamSnapshots(),
-    SaveTeamSnapshot()
+    SaveTeamSnapshot(),
+    LoadYouthTeamSnapshot(),
+    ReportYouthTeamChanges(),
+    CompareYouthTeamSnapshots(),
+    SaveYouthTeamSnapshot()
+]
+br_history_tools = [
+    GetPlayerHistoryData(),
+    GetPlayerHistoryInfo(),
+    GetTeamTrainingHistoryData()
+]
+br_utils_tools = [
+    Converter_From_Season_Round_Day_to_Date_INFO(),
+    Converter_From_Season_Round_Day_to_Date_DATA()
 ]
 
 #-------------------------------------------------------------------------------------
@@ -122,7 +146,9 @@ agent = CodeAgent(
     tools=[
         get_current_time_in_timezone,
         *brtools,
-        *br_memory_tools
+        *br_memory_tools,
+        *br_history_tools,
+        *br_utils_tools
     ], 
     model=mistral_model,
     max_steps=5,
