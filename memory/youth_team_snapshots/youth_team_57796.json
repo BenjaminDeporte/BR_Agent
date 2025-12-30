@@ -14,7 +14,7 @@
     "experience": 2,
     "weight": 89,
     "height": 182,
-    "energy": 108,
+    "energy": 100,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 14,
@@ -44,7 +44,7 @@
     "experience": 3,
     "weight": 119,
     "height": 190,
-    "energy": 101,
+    "energy": 89,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 14,
@@ -74,7 +74,7 @@
     "experience": 2,
     "weight": 84,
     "height": 190,
-    "energy": 108,
+    "energy": 92,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 14,
@@ -104,7 +104,7 @@
     "experience": 1,
     "weight": 87,
     "height": 188,
-    "energy": 108,
+    "energy": 100,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 14,
@@ -134,7 +134,7 @@
     "experience": 1,
     "weight": 89,
     "height": 192,
-    "energy": 108,
+    "energy": 100,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 14,
@@ -164,7 +164,7 @@
     "experience": 1,
     "weight": 88,
     "height": 184,
-    "energy": 108,
+    "energy": 92,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 14,
@@ -194,7 +194,7 @@
     "experience": 2,
     "weight": 89,
     "height": 180,
-    "energy": 103,
+    "energy": 99,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 14,
@@ -224,7 +224,7 @@
     "experience": 1,
     "weight": 105,
     "height": 186,
-    "energy": 108,
+    "energy": 100,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 12,
@@ -254,7 +254,7 @@
     "experience": 1,
     "weight": 82,
     "height": 177,
-    "energy": 108,
+    "energy": 100,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 12,
@@ -284,7 +284,7 @@
     "experience": 2,
     "weight": 111,
     "height": 180,
-    "energy": 108,
+    "energy": 100,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 13,
@@ -314,7 +314,7 @@
     "experience": 2,
     "weight": 87,
     "height": 174,
-    "energy": 94,
+    "energy": 98,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 12,
@@ -344,7 +344,7 @@
     "experience": 1,
     "weight": 77,
     "height": 183,
-    "energy": 107,
+    "energy": 99,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 10,
@@ -404,7 +404,7 @@
     "experience": 1,
     "weight": 116,
     "height": 179,
-    "energy": 108,
+    "energy": 92,
     "scouting_stars_used": 100,
     "skills": {
       "stamina": 13,
@@ -434,7 +434,7 @@
     "experience": 2,
     "weight": 118,
     "height": 180,
-    "energy": 95,
+    "energy": 81,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 7,
@@ -464,7 +464,7 @@
     "experience": 2,
     "weight": 92,
     "height": 185,
-    "energy": 106,
+    "energy": 98,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 6,
@@ -494,7 +494,7 @@
     "experience": 1,
     "weight": 109,
     "height": 195,
-    "energy": 95,
+    "energy": 80,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 6,
@@ -524,7 +524,7 @@
     "experience": 1,
     "weight": 115,
     "height": 199,
-    "energy": 98,
+    "energy": 85,
     "scouting_stars_used": 70,
     "skills": {
       "stamina": 10,
@@ -554,7 +554,7 @@
     "experience": 1,
     "weight": 120,
     "height": 198,
-    "energy": 101,
+    "energy": 89,
     "scouting_stars_used": 70,
     "skills": {
       "stamina": 13,
@@ -584,7 +584,7 @@
     "experience": 1,
     "weight": 112,
     "height": 197,
-    "energy": 96,
+    "energy": 82,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": 7,
@@ -614,7 +614,7 @@
     "experience": 1,
     "weight": 116,
     "height": 187,
-    "energy": 95,
+    "energy": 82,
     "scouting_stars_used": 70,
     "skills": {
       "stamina": 9,
@@ -644,7 +644,7 @@
     "experience": 1,
     "weight": 95,
     "height": 193,
-    "energy": 98,
+    "energy": 81,
     "scouting_stars_used": 10,
     "skills": {
       "stamina": "Medium",
